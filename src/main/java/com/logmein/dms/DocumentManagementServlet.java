@@ -43,6 +43,14 @@ public class DocumentManagementServlet extends HttpServlet {
 
   private Path dirPath;
 
+  public Path getDirPath() {
+    return dirPath;
+  }
+
+  public void setDirPath(Path dirPath) {
+    this.dirPath = dirPath;
+  }
+
   /**
    * @see Servlet#init(ServletConfig)
    */
@@ -78,7 +86,7 @@ public class DocumentManagementServlet extends HttpServlet {
       response.setHeader(headerKey, headerValue);
       response.setContentType("application/octet-stream");
       response.setContentLengthLong(file.length());
-      
+      response.setStatus(HttpServletResponse.SC_OK);
       byte[] buffer = new byte[4096];
       int bytesRead = -1;
        
@@ -166,7 +174,10 @@ public class DocumentManagementServlet extends HttpServlet {
       response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
     }
   }
-
+  
+  /**
+   * Check if the Document ID is missing in the request URI, If not return the document Id for further operations
+   */
   private String pickAndValidateDocumentIdFromURI(HttpServletRequest request) throws IOException {
     String documentIdString = request.getPathInfo();
     if (documentIdString == null || (documentIdString.split("/").length <= 1)) {
@@ -175,6 +186,9 @@ public class DocumentManagementServlet extends HttpServlet {
     return documentIdString.split("/")[1];
   }
 
+  /**
+   * Check for document existence. If found, return the path
+   */
   private Path checkDocumentExistence(String documentId) throws IOException {
     Optional<Path> documentPath = Files.walk(Paths.get(dirPath.toUri()))
         .filter(Files::isRegularFile)
@@ -188,6 +202,9 @@ public class DocumentManagementServlet extends HttpServlet {
     return documentPath.get();
   }
 
+  /**
+   * Validate the request body. No multiple files upload is supported.
+   */
   private Part validateAndGetPartFromRequestBody(HttpServletRequest request) throws IOException, ServletException {
     
     List<Part> requestParts = new ArrayList<>(request.getParts());
