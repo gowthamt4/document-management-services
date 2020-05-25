@@ -2,12 +2,11 @@
 
 LogmeIn Code challenge
 
-
 ### How to get started
 
 1. Clone the repository and change the directory
 
-`git clone https://git.daimler.com/Credit-Solutions/cp-credit-decision-orchestrator.git`
+`https://github.com/gowthamt4/document-management-services.git`
 
 `cd document-management-services`
 
@@ -39,5 +38,3 @@ This API is development by using document [https://github.com/gowthamt4/document
 
 1. This POST API does not support multiple file upload.
 2. This PUT API does not allow to replace the file of different format
-
-
