@@ -6,7 +6,7 @@ LogmeIn Code challenge
 
 1. Clone the repository and change the directory
 
-`https://github.com/gowthamt4/document-management-services.git`
+`git clone https://github.com/gowthamt4/document-management-services.git`
 
 `cd document-management-services`
 
