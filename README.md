@@ -29,11 +29,6 @@ Use the below link to download the POSTMAN collection of APIs in order to intera
 Navigate to the WAR file [https://github.com/gowthamt4/document-management-services/blob/master/document-management-services.war]
 
 
-### API Specification document
-
-This API is development by using document [https://github.com/gowthamt4/document-management-services/blob/master/DocumentService.pdf]
-
-
 ### Few more things
 
 1. This POST API does not support multiple file upload.
